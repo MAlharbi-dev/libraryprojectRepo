@@ -1,0 +1,17 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %} Show One Book {% endblock title %}
+
+{% block content %}
+    <a href="{% url 'books.list_books' %}">Go Back</a>
+
+    <h1>Details of {{ book.title }}</h1>
+    <h2>{{ book.title }}</h2>
+    <h2>Author: {{ book.author }}</h2>
+    <p><strong>{{ book.title }}</strong> provides a clear, simple, engaging, and entertaining 
+    introduction to Internet and web programming. It’s appropriate for both introductory and 
+    intermediate-level client-side and server-side programming courses.</p>
+
+    <img src="{% static book.image %}" alt="{{ book.title }} image" width="200" height="200">
+{% endblock content %}

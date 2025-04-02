@@ -1,0 +1,12 @@
+.topnav a {
+    color: black; /* Set all links to black */
+    text-decoration: none;
+}
+
+.topnav a:hover {
+    color: gray; /* Change color on hover if needed */
+}
+
+.topnav a.active {
+    color: green; /* If want the active page link to be a different color */
+}
