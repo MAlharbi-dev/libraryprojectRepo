@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+<head>
+    <title>Tables Example</title>
+    <style>
+        h1 {
+            color: #2c3e50;
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            color: #3e5c7a;
+            font-family: Arial, sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .total-row {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Table 1: Table of Fruits and Their Prices</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Fruit</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Apple</td>
+                <td>$0.25</td>
+            </tr>
+            <tr>
+                <td>Orange</td>
+                <td>$0.50</td>
+            </tr>
+            <tr>
+                <td>Banana</td>
+                <td>$1.00</td>
+            </tr>
+            <tr>
+                <td>Pineapple</td>
+                <td>$2.00</td>
+            </tr>
+            <tr class="total-row">
+                <td><strong>Total</strong></td>
+                <td><strong>$3.75</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h1>Table 2: A more complex sample table</h1>
+    <h2>Camelid comparison Approximate as of 6/2011</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <div class="table-header-with-icon">
+                    <img src="{% static 'Dsrt.png' %}" alt="Desert icon" width="200" height="200">
+                </div></th>
+                <th># of humps</th>
+                <th>Indigenous region</th>
+                <th>Spits?</th>
+                <th>Produces wool?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Dromedary</strong></td>
+                <td>1</td>
+                <td>Arabian Peninsula</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td><strong>Camels (bactrian)</strong></td>
+                <td>2</td>
+                <td>Africa/Asia</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td><strong>Llamas</strong></td>
+                <td>1</td>
+                <td>Andes Mountains</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

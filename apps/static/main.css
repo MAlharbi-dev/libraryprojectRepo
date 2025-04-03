@@ -1,0 +1,72 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* Styling for different link sections */
+.link-container {
+    padding: 20px;
+    display: block;
+}
+
+.green {
+    background-color: lightgreen;
+}
+
+.gray {
+    background-color: gray;
+}
+
+.black {
+    background-color: black;
+}
+
+/* Link Styles */
+.custom-link {
+    font-size: 18px;
+    text-decoration: none;
+}
+
+/* Default Colors */
+.green .custom-link {
+    color: red;
+}
+
+.gray .custom-link {
+    color: gold;
+}
+
+.black .custom-link {
+    color: white;
+}
+
+/* Hover Effect */
+.custom-link:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+/* Visited Links */
+.custom-link:visited {
+    opacity: 0.7;
+}
+
+/* Active Link */
+.custom-link:active {
+    color: purple;
+}
+
+/* static/main.css */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 2rem;
+    color: #333;
+}
+
+h1 {
+    color: #2c3e50;
+   
+}
+
