@@ -28,5 +28,6 @@ urlpatterns = [
     path('books/html5/text/formatting', lambda request: render(request, 'books/html5/text/formatting/formatting.html'), name='html5-links'),
     path('books/html5/text/listing', lambda request: render(request, 'books/html5/text/listing/listing.html'), name='html5-links'),
     path('books/html5/tables/', lambda request: render(request, 'books/html5/tables/tables.html'), name='html5-links'),
+    path('books/html5/search/', lambda request: render(request, 'books/html5/search/search.html'), name='search'),
     
 ]

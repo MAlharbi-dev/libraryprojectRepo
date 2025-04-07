@@ -1,0 +1,49 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block title %} Search Results {% endblock title %}
+
+{% block stylesheets %}
+<style>
+    .book-list {
+        margin-top: 20px;
+    }
+    .book-item {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+    .book-title {
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    .book-author {
+        color: #555;
+    }
+    .book-id {
+        color: #888;
+        font-size: 0.9em;
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="book-list">
+    <h2>Search Results</h2>
+    
+    {% if books %}
+        {% for book in books %}
+        <div class="book-item">
+            <div class="book-title">{{ book.title }}</div>
+            <div class="book-author">by {{ book.author }}</div>
+            <div class="book-id">ID: {{ book.id }}</div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No books found matching your search criteria.</p>
+    {% endif %}
+    
+    <a href="{% url 'search' %}">Back to search</a>
+</div>
+{% endblock content %}
