@@ -36,4 +36,4 @@ def search_view(request):
         
         return render(request, 'books/html5/list/book_list.html', {'books': results})
     
-    return render(request, 'books/html5/search.html')
+    return render(request, 'books/html5/search/search.html')
