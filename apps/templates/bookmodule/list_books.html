@@ -1,26 +1,23 @@
-{% extends "layouts/base.html" %}
-{% load static %}
-
-{% block title %} List of Books {% endblock title %}
-
-{% block stylesheets %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Query Results</title>
     <style>
-        h1 { color: green; }
-        h2 { color: lightskyblue; }
-        p { font-family: verdana; font-size: 20px; }
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        hr { margin: 10px 0; }
     </style>
-{% endblock stylesheets %}
-
-{% block content %}
-    <a href="{% url 'books.index' %}">Go Back</a> 
-
-    <h1>List of Books</h1>
-
-    {% for book in books %}
-        <a href="{% url 'books.viewbook' book.id %}"><h2>{{ book.title }}</h2></a>
-        <a href="{% url 'books.viewbook' book.id %}">
-            <img src="{% static book.image %}" alt="Book Image" width="200" height="200">
-        </a>
+</head>
+<body>
+    <h2>Books containing 'and' in title:</h2>
+    
+    {% for obj in books %}
+        <div>
+            ID: {{ obj.id }}, 
+            Title: {{ obj.title }}
+        </div>
         <hr>
+    {% empty %}
+        <p>No books found containing 'and' in the title.</p>
     {% endfor %}
-{% endblock content %}
+</body>
+</html>
