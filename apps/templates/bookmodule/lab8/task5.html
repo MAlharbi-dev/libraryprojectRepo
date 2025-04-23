@@ -1,0 +1,50 @@
+<!-- apps/bookmodule/templates/bookmodule/lab8/task5.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Statistics</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .stat-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .stat-value {
+            font-size: 1.2em;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book Statistics Report</h1>
+    
+    <div class="stat-card">
+        <h3>Total Books</h3>
+        <p class="stat-value">{{ stats.total_books }}</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Total Price of All Books</h3>
+        <p class="stat-value">${{ stats.total_price|floatformat:2 }}</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Average Price</h3>
+        <p class="stat-value">${{ stats.avg_price|floatformat:2 }}</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Most Expensive Book</h3>
+        <p class="stat-value">${{ stats.max_price|floatformat:2 }}</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Cheapest Book</h3>
+        <p class="stat-value">${{ stats.min_price|floatformat:2 }}</p>
+    </div>
+</body>
+</html>

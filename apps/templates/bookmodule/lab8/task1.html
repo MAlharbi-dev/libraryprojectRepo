@@ -1,0 +1,6 @@
+<h2>Books ≤ $80</h2>
+{% for book in books %}
+    <p>{{ book.title }} : ${{ book.price }}</p>
+{% empty %}
+    <p>No books under $80 found.</p>
+{% endfor %}

@@ -1,0 +1,6 @@
+<h2>Books: Edition ≤3 AND (no 'co' in title/author)</h2>
+{% for book in books %}
+    <p>{{ book.title }} (Ed. {{ book.edition }})</p>
+{% empty %}
+    <p>All books contain 'co' or have edition >3.</p>
+{% endfor %}

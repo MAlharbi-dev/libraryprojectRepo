@@ -10,4 +10,10 @@ urlpatterns = [
  path('search/', views.search_view, name='search'),
  path('simple/query', views.simple_query, name='simple-query'),
  path('complex/query/', views.complex_query, name='complex-query'),
+ path('lab8/task1/', views.task1, name='lab8-task1'),
+ path('lab8/task2/', views.task2, name='lab8-task2'),
+ path('lab8/task3/', views.task3, name='lab8-task3'),
+ path('lab8/task4/', views.task4, name='lab8-task4'),
+ path('lab8/task5/', views.task5, name='lab8-task5'),
+ path('lab8/student-stats/', views.student_stats, name='student-stats'),
 ]

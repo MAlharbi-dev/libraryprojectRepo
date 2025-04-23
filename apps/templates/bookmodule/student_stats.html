@@ -1,0 +1,35 @@
+<!-- apps/bookmodule/templates/bookmodule/student_stats.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Statistics</title>
+    <style>
+        table { border-collapse: collapse; width: 50%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Students by City</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>City</th>
+                <th>Number of Students</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for city in cities %}
+            <tr>
+                <td>{{ city.city }}</td>
+                <td>{{ city.student_count }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No data available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
