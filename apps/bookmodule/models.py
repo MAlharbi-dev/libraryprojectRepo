@@ -41,5 +41,10 @@ class Student(models.Model):
     )
     courses = models.ManyToManyField(Course, related_name='students')
 
+class Image(models.Model):
+    image = models.ImageField(upload_to='images/')
+    description = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.description
 

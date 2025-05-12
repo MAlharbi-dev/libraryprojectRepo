@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Address, Book, Course, Department, Student, Card
 from django.db.models import Q, Count, Sum, Avg, Max, Min
-from .forms import BookForm
+from .forms import AddressForm, BookForm, ImageForm, StudentForm
 
 
 # samples 
@@ -218,3 +218,54 @@ def delete_book_part2(request, id):
     book = get_object_or_404(Book, id=id)
     book.delete()
     return redirect('list_books_part2')
+
+# List all students
+def list_students(request):
+    students = Student.objects.all()
+    return render(request, 'students/list_students.html', {'students': students})
+
+# Add a new student
+def add_student(request):
+    if request.method == 'POST':
+        student_form = StudentForm(request.POST)
+        address_form = AddressForm(request.POST)
+        if student_form.is_valid() and address_form.is_valid():
+            address = address_form.save()
+            student = student_form.save()
+            student.addresses.add(address)
+            return redirect('list_students')
+    else:
+        student_form = StudentForm()
+        address_form = AddressForm()
+    return render(request, 'students/add_student.html', {'student_form': student_form, 'address_form': address_form})
+
+# Edit a student's data
+def edit_student(request, id):
+    student = get_object_or_404(Student, id=id)
+    if request.method == 'POST':
+        student_form = StudentForm(request.POST, instance=student)
+        address_form = AddressForm(request.POST)
+        if student_form.is_valid() and address_form.is_valid():
+            address = address_form.save()
+            student.addresses.add(address)
+            student_form.save()
+            return redirect('list_students')
+    else:
+        student_form = StudentForm(instance=student)
+        address_form = AddressForm()
+    return render(request, 'students/edit_student.html', {'student_form': student_form, 'address_form': address_form})
+# Delete a student
+def delete_student(request, id):
+    student = get_object_or_404(Student, id=id)
+    student.delete()
+    return redirect('list_students')
+
+def add_image(request):
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('list_images')
+    else:
+        form = ImageForm()
+    return render(request, 'students/add_image.html', {'form': form})

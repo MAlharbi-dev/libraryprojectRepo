@@ -1,5 +1,8 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 
 urlpatterns = [
@@ -29,5 +32,13 @@ urlpatterns = [
  path('lab9_part2/addbook', views.add_book_part2, name='add_book_part2'),
  path('lab9_part2/editbook/<int:id>/', views.edit_book_part2, name='edit_book_part2'),
  path('lab9_part2/deletebook/<int:id>/', views.delete_book_part2, name='delete_book_part2'),
-
+ path('students/list/', views.list_students, name='list_students'),
+ path('students/add/', views.add_student, name='add_student'),
+ path('students/edit/<int:id>/', views.edit_student, name='edit_student'),
+ path('students/delete/<int:id>/', views.delete_student, name='delete_student'),
 ]
+urlpatterns += [
+    path('students/add_image/', views.add_image, name='add_image'),
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
