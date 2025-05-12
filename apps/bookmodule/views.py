@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import Address, Book, Course, Department, Student, Card
 from django.db.models import Q, Count, Sum, Avg, Max, Min
 
@@ -144,7 +144,7 @@ def lab9_task3(request):
     
     oldest_students = []
     for dept in departments:
-        student = Student1.objects.filter(
+        student = Student.objects.filter(
             department=dept,
             id=dept.oldest_student_id
         ).first()
@@ -161,3 +161,29 @@ def lab9_task4(request):
         student_count=Count('students')
     ).filter(student_count__gt=2).order_by('-student_count')
     return render(request, 'bookmodule/lab9_task4.html', {'departments': departments})
+
+def list_books(request):
+    books = Book.objects.all()
+    return render(request, 'list_books.html', {'books': books})
+
+def add_book(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        author = request.POST.get('author')
+        Book.objects.create(title=title, author=author)
+        return redirect('list_books')
+    return render(request, 'add_book.html')
+
+def edit_book(request, id):
+    book = get_object_or_404(Book, id=id)
+    if request.method == 'POST':
+        book.title = request.POST.get('title')
+        book.author = request.POST.get('author')
+        book.save()
+        return redirect('list_books')
+    return render(request, 'edit_book.html', {'book': book})
+
+def delete_book(request, id):
+    book = get_object_or_404(Book, id=id)
+    book.delete()
+    return redirect('list_books')
