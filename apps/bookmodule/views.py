@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Address, Book, Course, Department, Student, Card
 from django.db.models import Q, Count, Sum, Avg, Max, Min
+from .forms import BookForm
 
 
 # samples 
@@ -187,3 +188,33 @@ def delete_book(request, id):
     book = get_object_or_404(Book, id=id)
     book.delete()
     return redirect('list_books')
+
+def list_books_part2(request):
+    books = Book.objects.all()
+    return render(request, 'list_books_part2.html', {'books': books})
+
+def add_book_part2(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list_books_part2')
+    else:
+        form = BookForm()
+    return render(request, 'add_book_part2.html', {'form': form})
+
+def edit_book_part2(request, id):
+    book = get_object_or_404(Book, id=id)
+    if request.method == 'POST':
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('list_books_part2')
+    else:
+        form = BookForm(instance=book)
+    return render(request, 'edit_book_part2.html', {'form': form})
+
+def delete_book_part2(request, id):
+    book = get_object_or_404(Book, id=id)
+    book.delete()
+    return redirect('list_books_part2')

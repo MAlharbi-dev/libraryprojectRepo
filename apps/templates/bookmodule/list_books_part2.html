@@ -1,0 +1,20 @@
+<!-- list_books_part2.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Books</title>
+</head>
+<body>
+    <h1>Books</h1>
+    <a href="{% url 'add_book_part2' %}">Add New Book</a>
+    <ul>
+        {% for book in books %}
+            <li>
+                {{ book.title }} - {{ book.author }}
+                <a href="{% url 'edit_book_part2' book.id %}">Edit</a>
+                <a href="{% url 'delete_book_part2' book.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
