@@ -16,4 +16,10 @@ urlpatterns = [
  path('lab8/task4/', views.task4, name='lab8-task4'),
  path('lab8/task5/', views.task5, name='lab8-task5'),
  path('lab8/student-stats/', views.student_stats, name='student-stats'),
+ path('books/lab9/task1', views.lab9_task1, name='lab9.task1'),
+ path('books/lab9/task2', views.lab9_task2, name='lab9.task2'),
+ path('books/lab9/task3', views.lab9_task3, name='lab9.task3'),
+ path('books/lab9/task4', views.lab9_task4, name='lab9.task4'),
+ path('init/sampledata', views.create_sample_data, name='create_sample_data'),
+
 ]

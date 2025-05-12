@@ -1,0 +1,14 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Departments and Student Counts{% endblock title %}
+
+{% block content %}
+    <h1>Departments and Student Counts</h1>
+    <ul>
+        {% for dept in departments %}
+            <li>{{ dept.name }} — {{ dept.count }} students</li>
+        {% empty %}
+            <li>No departments found.</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

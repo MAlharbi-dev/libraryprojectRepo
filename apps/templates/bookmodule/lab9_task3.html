@@ -1,0 +1,8 @@
+<h2>Oldest Student by Department</h2>
+<ul>
+{% for item in oldest_students %}
+    <li>{{ item.department.name }}: {{ item.student.name }}</li>
+{% empty %}
+    <li>No departments with students found</li>
+{% endfor %}
+</ul>

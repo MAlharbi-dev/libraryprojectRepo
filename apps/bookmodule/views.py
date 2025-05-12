@@ -1,7 +1,36 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Address, Book
+from .models import Address, Book, Course, Department, Student, Card
 from django.db.models import Q, Count, Sum, Avg, Max, Min
+
+
+# samples 
+
+def create_sample_data(request):
+    # Create Address
+    addr = Address.objects.create(city="Riyadh")
+
+    # Create Card
+    card = Card.objects.create(card_number=123456)
+
+    # Create Department
+    dept = Department.objects.create(name="Computer Science")
+
+    # Create Courses
+    c1 = Course.objects.create(title="Algorithms", code=101)
+    c2 = Course.objects.create(title="Databases", code=102)
+
+    # Create Student
+    student = Student.objects.create(
+        name="Ahmed",
+        age=21,
+        address=addr,
+        card=card,
+        department=dept
+    )
+    student.courses.set([c1, c2])
+
+    return HttpResponse("Sample data created successfully.")
 
 # Create your views here.
 def index(request):
@@ -91,3 +120,44 @@ def student_stats(request):
         student_count=Count('student')
     ).order_by('-student_count')
     return render(request, 'bookmodule/student_stats.html', {'cities': cities})
+
+def lab9_task1(request):
+    departments = Department.objects.all()
+
+    data = []
+    for dept in departments:
+        student_count = dept.students.count()  # using related_name='students'
+        data.append({'name': dept.name, 'count': student_count})
+
+    return render(request, 'bookmodule/lab9_task1.html', {'departments': data})
+
+def lab9_task2(request):
+    courses = Course.objects.annotate(
+        student_count=Count('students')
+    ).order_by('title')
+    return render(request, 'bookmodule/lab9_task2.html', {'courses': courses})
+
+def lab9_task3(request):
+    departments = Department.objects.annotate(
+        oldest_student_id=Min('students__id')
+    ).filter(oldest_student_id__isnull=False)
+    
+    oldest_students = []
+    for dept in departments:
+        student = Student1.objects.filter(
+            department=dept,
+            id=dept.oldest_student_id
+        ).first()
+        if student:
+            oldest_students.append({
+                'department': dept,
+                'student': student
+            })
+    
+    return render(request, 'bookmodule/lab9_task3.html', {'oldest_students': oldest_students})
+
+def lab9_task4(request):
+    departments = Department.objects.annotate(
+        student_count=Count('students')
+    ).filter(student_count__gt=2).order_by('-student_count')
+    return render(request, 'bookmodule/lab9_task4.html', {'departments': departments})
